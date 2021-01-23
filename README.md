@@ -5,6 +5,7 @@ Web Blog : To add/update/get/delete posts
 	Java 11
 	Postgres DB (docker-compose provided in the codebase)
 	Spring boot : 2.4.x
+	Gradle 5.5.x
 
 
 
