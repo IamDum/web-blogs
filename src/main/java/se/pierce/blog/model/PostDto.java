@@ -5,7 +5,6 @@ public class PostDto {
     private String title;
     private String content;
 
-
     public String getContent() {
         return content;
     }

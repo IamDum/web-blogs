@@ -6,5 +6,4 @@ import se.pierce.blog.storage.entity.Post;
 
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
-
 }

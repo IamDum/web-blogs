@@ -1,0 +1,31 @@
+server:
+  port: 6601
+
+hibernate:
+  hbm2ddl:
+    auto: create-drop
+
+spring:
+  application:
+    name: Raman-application
+  jpa:
+    properties:
+      hibernate:
+        temp.use_jdbc_metadata_defaults: false
+        hbm2ddl:
+          auto: update
+    database-platform: org.hibernate.dialect.HSQLDialect
+  jackson:
+    default-property-inclusion: NON_ABSENT
+    serialization:
+      write-dates-as-timestamps: false
+  datasource:
+    url: jdbc:hsqldb:mem:scratchdb
+    username: sa
+    password:
+    driverClassName: org.hsqldb.jdbcDriver
+    hikari:
+      auto-commit: false
+  codec:
+    max-in-memory-size: 5MB
+
