@@ -1,0 +1,18 @@
+version: '2.2'
+
+services:
+  postgresi:
+    image: postgres:11-alpine
+    container_name: postgres
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_DB: blogdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Pa55w0rd
+    volumes:
+      - postgres_data_3:/tmp
+
+
+volumes:
+  postgres_data_3:
