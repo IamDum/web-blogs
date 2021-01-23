@@ -1,4 +1,4 @@
-# web-blog
+# web-blogs
 Web Blog : To add/update/get/delete posts
 
 # Dependencies
