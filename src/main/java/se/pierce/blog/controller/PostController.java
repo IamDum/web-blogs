@@ -1,6 +1,8 @@
 package se.pierce.blog.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import se.pierce.blog.model.PostDto;
 import se.pierce.blog.service.PostStorageService;
@@ -15,7 +17,7 @@ public class PostController {
     private PostStorageService storageService;
 
     @PostMapping(value = "/posts")
-    public void post(@RequestBody PostDto post) {
+    public void addPost(@RequestBody PostDto post) {
         storageService.savePost(post.getTitle(), post.getContent());
     }
 
@@ -25,8 +27,21 @@ public class PostController {
     }
 
     @PutMapping(value = "/posts")
-    public void updatePost(@RequestBody PostDto post) {
-        //return storageService.updatePost(post);
+    public ResponseEntity<PostDto> updatePost(@RequestBody PostDto post) {
+        PostDto postDto = storageService.updatePost(post);
+        return ResponseEntity.status(HttpStatus.CREATED).body(postDto);
+    }
+
+    @GetMapping(value = "/posts/{postId}")
+    public PostDto getPostById(@PathVariable("postId") String postId) {
+        return storageService.getPostById(postId);
+    }
+
+    @DeleteMapping(value = "/posts/{postId}")
+    public void deletePost(@PathVariable("postId") String postId) {
+        storageService.delPostById(postId);
     }
 }
+
+
 
