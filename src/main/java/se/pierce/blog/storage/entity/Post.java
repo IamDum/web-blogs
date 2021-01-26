@@ -1,5 +1,7 @@
 package se.pierce.blog.storage.entity;
 
+import se.pierce.blog.model.PostDto;
+
 import javax.persistence.*;
 
 @Entity
@@ -34,5 +36,13 @@ public class Post {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public PostDto toPostDto() {
+        PostDto postDto = new PostDto();
+        postDto.setContent(this.getContent());
+        postDto.setTitle(this.getTitle());
+        postDto.setId(this.getId() + "");
+        return postDto;
     }
 }

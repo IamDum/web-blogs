@@ -29,11 +29,7 @@ public class PostStorageService {
         List<Post> posts = postRepository.findAll();
         List<PostDto> postDtoList = new ArrayList<>();
         for (Post post : posts) {
-            PostDto postDto = new PostDto();
-            postDto.setContent(post.getContent());
-            postDto.setTitle(post.getTitle());
-            postDto.setId(String.valueOf(post.getId()));
-            postDtoList.add(postDto);
+            postDtoList.add(post.toPostDto());
         }
         return postDtoList;
     }
@@ -48,21 +44,16 @@ public class PostStorageService {
             postRepository.save(postFromDB);
             return post;
         }
-        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "post not found");
+        return throwNotFoundException();
     }
 
     public PostDto getPostById(String postId) {
         long parseLong = Long.parseLong(postId);
         Optional<Post> posts = postRepository.findById(parseLong);
         if (posts.isPresent()) {
-            Post post = posts.get();
-            PostDto postDto = new PostDto();
-            postDto.setContent(post.getContent());
-            postDto.setTitle(post.getTitle());
-            postDto.setId(postId);
-            return postDto;
+            return posts.get().toPostDto();
         }
-        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "post not found");
+        return throwNotFoundException();
     }
 
     public void delPostById(String postId) {
@@ -71,8 +62,12 @@ public class PostStorageService {
         if (posts.isPresent()) {
             postRepository.deleteById(postIdLong);
         } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Post not found");
+            throwNotFoundException();
         }
+    }
+
+    private PostDto throwNotFoundException() {
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Post not found");
     }
 }
 
