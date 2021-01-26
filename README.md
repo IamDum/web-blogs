@@ -6,6 +6,10 @@ Web Blog : To add/update/get/delete posts
 	Postgres DB (docker-compose provided in the codebase)
 	Spring boot : 2.4.x
 	Gradle 5.5.x
+	
+
+# 100% Test covregae
+	Spring boot test - end to end API test
 
 
 
