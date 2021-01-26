@@ -8,7 +8,7 @@ Web Blog : To add/update/get/delete posts
 	Gradle 5.5.x
 	
 
-# 100% Test covregae
+# 100% Test coverage
 	Spring boot test - end to end API test
 
 
