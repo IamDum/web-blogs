@@ -49,7 +49,7 @@ jobs:
           PROJECT_URL: https://github.com/IamDum/web-blogs/projects/2
           INPUT_COLUMN_NAME: "To do"
           column_name: "To do"
-          GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
-          MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+          GITHUB_TOKEN: "00bd57b7ee718c1f27577f7c8a0a8d01f9fab89b"
+          MY_GITHUB_TOKEN: "00bd57b7ee718c1f27577f7c8a0a8d01f9fab89b"
 
          
