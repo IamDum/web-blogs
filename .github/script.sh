@@ -1,6 +1,6 @@
 #!/bin/sh -l
 
-PROJECT_URL="$INPUT_PROJECT"
+PROJECT_URL="https://github.com/IamDum/NationalBank/projects/2"
 if [ -z "$PROJECT_URL" ]; then
   echo "PROJECT_URL is not defined." >&2
   exit 1
