@@ -1,6 +1,5 @@
 #!/bin/sh -l
 
-PROJECT_URL="$INPUT_PROJECT"
 if [ -z "$PROJECT_URL" ]; then
   echo "PROJECT_URL is not defined." >&2
   exit 1
