@@ -44,5 +44,5 @@ jobs:
         env:
           PROJECT_URL: https://github.com/IamDum/NationalBank/projects/2
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          INPUT_COLUMN_NAME: "Backlog"
+          INITIAL_COLUMN_NAME: "Backlog"
          
