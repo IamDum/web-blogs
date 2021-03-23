@@ -9,7 +9,7 @@ on:
   pull_request:
     types: [opened, labeled]
 env:
-  MY_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   PROJECT_URL: https://github.com/IamDum/web-blogs/projects/1
 
 
