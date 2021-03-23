@@ -14,5 +14,5 @@ jobs:
     runs-on: ubuntu-latest
     name: Assign to Live Squad Project
     steps:
-    - run:  ./hh.sh
+    - run: sh ./hh.sh
           
