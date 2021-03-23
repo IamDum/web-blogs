@@ -1,4 +1,4 @@
-
+ 
 name: Auto Assign to Project(s)
 
 on:
@@ -14,8 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     name: Assign to Live Squad Project
     steps:
-      - uses: actions-ecosystem/action-add-labels@v1
-        if: github.event.action == 'opened'
-        with:
-          github_token: ${{  secrets.GITHUB_TOKEN }}
-          labels: bugy
+    - run: |
+       # make file runnable, might not be necessary
+       chmod +x "${GITHUB_WORKSPACE}/.github/script.sh"
+
+       # run script
+       "${GITHUB_WORKSPACE}/.github/script.sh"
+          
