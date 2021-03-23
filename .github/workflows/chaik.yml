@@ -4,14 +4,14 @@ name: CI
 
 # Controls when the action will run. 
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
-  push:
-    branches: [ main ]
+  issues:
+    types: [opened, labeled]
   pull_request:
-    branches: [ main ]
+    types: [opened, labeled]
+env:
+  MY_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
