@@ -94,14 +94,7 @@ else
 fi
 
 INITIAL_COLUMN_NAME="$INPUT_COLUMN_NAME"
-if [ -z "$INITIAL_COLUMN_NAME" ]; then
-  # assing the column name by default
-  INITIAL_COLUMN_NAME='To do'
-  if [ "$GITHUB_EVENT_NAME" == "pull_request" ] || [ "$GITHUB_EVENT_NAME" == "pull_request_target" ]; then
-    echo "changing col name for PR event"
-    INITIAL_COLUMN_NAME='In progress'
-  fi
-fi
+
 
 
 PROJECT_ID=$(find_project_id "$PROJECT_TYPE" "$PROJECT_URL")
