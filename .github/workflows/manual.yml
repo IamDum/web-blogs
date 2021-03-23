@@ -14,9 +14,5 @@ jobs:
     runs-on: ubuntu-latest
     name: Assign to Live Squad Project
     steps:
-    - run: |
-       # make file runnable, might not be necessary
-
-       # run script
-       "${GITHUB_WORKSPACE}/.github/script.sh"
+    - run: pwd
           
