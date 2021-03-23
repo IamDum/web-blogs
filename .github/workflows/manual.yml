@@ -16,7 +16,6 @@ jobs:
     steps:
     - run: |
        # make file runnable, might not be necessary
-       chmod 777 "${GITHUB_WORKSPACE}/.github/script.sh"
 
        # run script
        "${GITHUB_WORKSPACE}/.github/script.sh"
