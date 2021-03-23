@@ -1,0 +1,21 @@
+
+name: Auto Assign to Project(s)
+
+on:
+  issues:
+    types: [opened, labeled]
+  pull_request:
+    types: [opened, labeled]
+env:
+  MY_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  assign_one_project:
+    runs-on: ubuntu-latest
+    name: Assign to Live Squad Project
+    steps:
+      - uses: actions-ecosystem/action-add-labels@v1
+        if: github.event.action == 'opened'
+        with:
+          github_token: ${{  secrets.GITHUB_TOKEN }}
+          labels: bugy
