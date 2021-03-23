@@ -10,8 +10,8 @@ on:
     types: [opened, labeled]
 env:
   PROJECT_URL: https://github.com/IamDum/web-blogs/projects/1
-  GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
-  MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  MY_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
   # Allows you to run this workflow manually from the Actions tab
@@ -46,10 +46,10 @@ jobs:
         run: |
           sh "${GITHUB_WORKSPACE}/.github/script.sh"          
         env:
-          PROJECT_URL: https://github.com/IamDum/web-blogs/projects/1
+          PROJECT_URL: https://github.com/IamDum/web-blogs/projects/2
           INPUT_COLUMN_NAME: "To do"
           column_name: "To do"
-          GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
-          MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MY_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
          
