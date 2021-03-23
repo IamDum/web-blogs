@@ -42,5 +42,7 @@ jobs:
         run: |
           sh "${GITHUB_WORKSPACE}/.github/script.sh"
         env:
-          PROJECT_URL: kjkk # if run.py requires passwords..etc, set it as secrets
+          PROJECT_URL: https://github.com/IamDum/NationalBank/projects/2
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+ # if run.py requires passwords..etc, set it as secrets
          
