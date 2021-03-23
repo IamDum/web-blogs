@@ -43,6 +43,7 @@ jobs:
           echo what is this directory ? 
           ls -a
           echo
+          env
           echo ls the main directory ends.
           git --version 
           sh "${GITHUB_WORKSPACE}/.github/script.sh"
