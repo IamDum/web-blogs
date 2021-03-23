@@ -70,9 +70,9 @@ find_column_id() {
           -H 'Accept: application/vnd.github.inertia-preview+json' \
           "https://api.github.com/projects/$_PROJECT_ID/columns")
 
+  #   echo "$_COLUMNS" | jq -r ".[] | select(.name == \"$_INITIAL_COLUMN_NAME\").id"
 
-  echo "HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH"
-  echo "$_COLUMNS" | jq -r ".[] | select(.name == \"$_INITIAL_COLUMN_NAME\").id"
+  echo "$_COLUMNS"
   unset _PROJECT_ID _INITIAL_COLUMN_NAME _COLUMNS
 }
 
@@ -100,6 +100,8 @@ INITIAL_COLUMN_NAME="$INPUT_COLUMN_NAME"
 
 PROJECT_ID=$(find_project_id "$PROJECT_TYPE" "$PROJECT_URL")
 INITIAL_COLUMN_ID=$(find_column_id "$PROJECT_ID" "${INITIAL_COLUMN_NAME:?<Error> required this environment variable}")
+
+echo "$INITIAL_COLUMN_ID"
 
 if [ -z "$INITIAL_COLUMN_ID" ]; then
   echo "INITIAL_COLUMN_ID is not found." >&2
