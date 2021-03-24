@@ -7,10 +7,10 @@ on:
   issues:
     types: [opened]
 
-env:
-  PROJECT_URL: https://github.com/IamDum/web-blogs/projects/1
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  MY_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#env:
+#  PROJECT_URL: https://github.com/IamDum/web-blogs/projects/1
+ # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+ # MY_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
   # Allows you to run this workflow manually from the Actions tab
