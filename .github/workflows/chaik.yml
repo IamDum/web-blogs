@@ -16,15 +16,15 @@ jobs:
       - uses: actions-ecosystem/action-add-labels@v1
         if: github.event.action == 'opened'
         with:
-          github_token: ${{  secrets.VP_DEPLOY_SECRET }}
+          github_token: ${{  secrets.GITHUB_TOKEN }}
           labels: new
 
       - name: Add to LiveSquad project
         run: |
-          sh "${GITHUB_WORKSPACE}/misc/github_actions/create_issue_in_project.sh"
+          sh "${GITHUB_WORKSPACE}/.github/hh.sh"
         env:
-          PROJECT_URL:'https://github.com/orgs/cbsinteractive/projects/23'
+          PROJECT_URL:'https://github.com/IamDum/web-blogs/projects/1'
           INPUT_COLUMN_NAME: "Backlog"
           column_name: "Backlog"
-          GITHUB_ACTOR: ${{ secrets.VP_DEPLOY_USER }}
+          GITHUB_ACTOR: ${{ secrets.GITHUB_TOKEN }}
           TOKEN: ${{ secrets.VP_DEPLOY_SECRET }}
