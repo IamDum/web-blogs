@@ -16,7 +16,7 @@ jobs:
       - uses: actions-ecosystem/action-add-labels@v1
         if: github.event.action == 'opened'
         with:
-          github_token: ${{  secrets.tetetet }}
+          github_token: ${{  secrets.GITHUB_TOKEN }}
           labels: new
 
       - name: Add to LiveSquad project
