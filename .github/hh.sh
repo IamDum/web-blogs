@@ -50,8 +50,7 @@ find_project_id() {
            -H 'Accept: application/vnd.github.inertia-preview+json' \
            "$_ENDPOINT")
 
-
-  _CLEANED= ${_PROJECTS//[$'\t\r\n']} && _CLEANED=${_CLEANED%%*( )}
+  _CLEANED= $_PROJECTS | tr -d '\n'
 
   _PROJECTID=$(echo "$_CLEANED" | jq -r ".[] | select(.html_url == \"$_PROJECT_URL\").id") 
 
