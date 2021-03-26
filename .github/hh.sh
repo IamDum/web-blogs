@@ -54,7 +54,7 @@ find_project_id() {
   #_CLEANN=$(echo $_CLEAN | sed -z 's/\r/-----/g')
   #_CLEANN=$(echo $_CLEAN | sed -z 's/\n/-----/g')
 
-  _PROJECTID= $(echo "$_CLEAN" | jq -r ".[] | select(.html_url == \"$_PROJECT_URL\").id") 
+  _PROJECTID= $(echo "$_CLEAN" | jq -R ".[] | select(.html_url == \"$_PROJECT_URL\").id") 
 
   if [ "$_PROJECTID" != "" ]; then
     echo "$_PROJECTID"
@@ -75,8 +75,8 @@ find_column_id() {
           -H 'Accept: application/vnd.github.inertia-preview+json' \
           "https://api.github.com/projects/$_PROJECT_ID/columns")
 
-  _CLEANN=$(echo $_COLUMNS | sed -e 's/,/\n/g')
-  echo "$_CLEANN" | jq -r ".[] | select(.name == \"$_INITIAL_COLUMN_NAME\").id"
+  _CLEANN=$(echo $_COLUMNS | tr '\r\n' '   ' )
+  echo "$_CLEANN" | jq -R ".[] | select(.name == \"$_INITIAL_COLUMN_NAME\").id"
   unset _PROJECT_ID _INITIAL_COLUMN_NAME _COLUMNS
 }
 
