@@ -49,10 +49,10 @@ find_project_id() {
            -H 'Accept: application/vnd.github.inertia-preview+json' \
            "$_ENDPOINT")
 
- # _PROJECTS= "$_PROJECTS" | sed -e "s/\n/ /g"
- # _PROJECTS= "$_PROJECTS" | sed -e "s/\r\n/ /g"
+  _PROJECTS= "$_PROJECTS" | sed -e "s/\n/ /g"
+  _PROJECTS= "$_PROJECTS" | sed -e "s/\r\n/ /g"
 
-  _PROJECTID= "" #$(echo "$_PROJECTS"  | jq -r ".[] | select(.html_url == \"$_PROJECT_URL\").id")
+  _PROJECTID=  $(echo "$_PROJECTS"  | jq -r ".[] | select(.html_url == \"$_PROJECT_URL\").id")
 
   if [ "$_PROJECTID" != "" ]; then
     echo "$_PROJECTID"
