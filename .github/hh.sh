@@ -51,6 +51,8 @@ find_project_id() {
            "$_ENDPOINT")
 
   _CLEAN=$(echo $_PROJECTS | sed -z 's/\r/-----/g')
+  _CLEAN=$(echo $_CLEAN | sed -z 's/\n/-----/g')
+  _CLEAN=$(echo $_CLEAN | sed -z 's/\t/-----/g')
   _PROJECTID=$(echo "$_CLEAN" | jq -r ".[] | select(.html_url == \"$_PROJECT_URL\").id") 
 
   if [ "$_PROJECTID" != "" ]; then
