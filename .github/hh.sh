@@ -50,8 +50,8 @@ find_project_id() {
            -H 'Accept: application/vnd.github.inertia-preview+json' \
            "$https://ilxgpu9000.inoviaai.se/1.json")
 
-  #_CLEAN=$(echo $_PROJECTS | sed -e 's/\n\r//g')
-  _PROJECTID=$(echo "$_PROJECTS" | jq -r ".[] | select(.html_url == \"$_PROJECT_URL\").id") 
+  _CLEAN=$(echo $_PROJECTS | sed -e 's/\n\r//g')
+  _PROJECTID=$(echo "$_CLEAN" | jq -r ".[] | select(.html_url == \"$_PROJECT_URL\").id") 
 
   if [ "$_PROJECTID" != "" ]; then
     echo "$_PROJECTID"
