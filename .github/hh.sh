@@ -50,8 +50,9 @@ find_project_id() {
            "$_ENDPOINT")
 
 
+  _CLEANED= ${_PROJECTS//[$'\t\r\n']} && CLEANED=${CLEANED%%*( )}
 
-  _PROJECTID=$(echo "$_PROJECTS" | jq -r ".[] | tr -d '\n' | select(.html_url == \"$_PROJECT_URL\").id") 
+  _PROJECTID=$(echo "$_CLEANED" | jq -r ".[] | select(.html_url == \"$_PROJECT_URL\").id") 
 
   if [ "$_PROJECTID" != "" ]; then
     echo "$_PROJECTID"
