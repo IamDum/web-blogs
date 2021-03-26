@@ -49,7 +49,6 @@ find_project_id() {
            -H 'Accept: application/vnd.github.inertia-preview+json' \
            "$_ENDPOINT")
 
-  echo "$_PROJECTS"
   _PROJECTID=$(echo "$_PROJECTS" | jq -r ".[] | select(.html_url == \"$_PROJECT_URL\").id")
 
   if [ "$_PROJECTID" != "" ]; then
@@ -70,46 +69,44 @@ find_column_id() {
           -H 'Accept: application/vnd.github.inertia-preview+json' \
           "https://api.github.com/projects/$_PROJECT_ID/columns")
 
-  #   echo "$_COLUMNS" | jq -r ".[] | select(.name == \"$_INITIAL_COLUMN_NAME\").id"
 
-  echo "$_COLUMNS"
+  echo "$_COLUMNS" | jq -r ".[] | select(.name == \"$_INITIAL_COLUMN_NAME\").id"
   unset _PROJECT_ID _INITIAL_COLUMN_NAME _COLUMNS
 }
 
 PROJECT_TYPE=$(get_project_type "${PROJECT_URL:?<Error> required this environment variable}")
 
 if [ "$PROJECT_TYPE" = org ] || [ "$PROJECT_TYPE" = user ]; then
-  if [ -z "$MY_GITHUB_TOKEN" ]; then
-    echo "MY_GITHUB_TOKEN not defined" >&2
+  if [ -z "$TOKEN" ]; then
+    echo "TOKEN not defined" >&2
     exit 1
   fi
 
-  TOKEN="$MY_GITHUB_TOKEN" # It's User's personal access token. It should be secret.
+  TOKEN="$TOKEN" # It's User's personal access token. It should be secret.
 else
-  if [ -z "$GITHUB_TOKEN" ]; then
-    echo "GITHUB_TOKEN not defined" >&2
+  if [ -z "$TOKEN" ]; then
+    echo "TOKEN not defined" >&2
     exit 1
   fi
 
-  TOKEN="$GITHUB_TOKEN"    # GitHub sets. The scope in only the repository containing the workflow file.
+  TOKEN="$TOKEN"    # GitHub sets. The scope in only the repository containing the workflow file.
 fi
 
 INITIAL_COLUMN_NAME="$INPUT_COLUMN_NAME"
-
+if [ -z "$INITIAL_COLUMN_NAME" ]; then
+  # assing the column name by default
+  INITIAL_COLUMN_NAME='To do'
+  if [ "$GITHUB_EVENT_NAME" == "pull_request" ] || [ "$GITHUB_EVENT_NAME" == "pull_request_target" ]; then
+    echo "changing col name for PR event"
+    INITIAL_COLUMN_NAME='In progress'
+  fi
+fi
 
 
 PROJECT_ID=$(find_project_id "$PROJECT_TYPE" "$PROJECT_URL")
-echo "$PROJECT_ID"
-
-echo "HHHHHHHH999"
-
 INITIAL_COLUMN_ID=$(find_column_id "$PROJECT_ID" "${INITIAL_COLUMN_NAME:?<Error> required this environment variable}")
 
-echo "$INITIAL_COLUMN_ID"
-
 if [ -z "$INITIAL_COLUMN_ID" ]; then
-  echo "$INITIAL_COLUMN_ID"
-  echo "HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH"
   echo "INITIAL_COLUMN_ID is not found." >&2
   exit 1
 fi
