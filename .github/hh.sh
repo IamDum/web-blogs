@@ -48,9 +48,9 @@ find_project_id() {
 
   _PROJECTS=$(curl -s -X GET -u "$GITHUB_ACTOR:$TOKEN" --retry 3 \
            -H 'Accept: application/vnd.github.inertia-preview+json' \
-           "$https://ilxgpu9000.inoviaai.se/1.json")
+           "$_ENDPOINT")
 
-  _CLEAN=$(echo $_PROJECTS | sed -e 's/\n\r//g')
+  _CLEAN=$(echo $_PROJECTS | sed -e 's/\r\n//g')
   _PROJECTID=$(echo "$_CLEAN" | jq -r ".[] | select(.html_url == \"$_PROJECT_URL\").id") 
 
   if [ "$_PROJECTID" != "" ]; then
@@ -67,12 +67,13 @@ find_column_id() {
   _PROJECT_ID="$1"
   _INITIAL_COLUMN_NAME="$2"
 
+
   _COLUMNS=$(curl -s -X GET -u "$GITHUB_ACTOR:$TOKEN" --retry 3 \
           -H 'Accept: application/vnd.github.inertia-preview+json' \
           "https://api.github.com/projects/$_PROJECT_ID/columns")
 
-
-  echo "$_COLUMNS" | jq -r ".[] | select(.name == \"$_INITIAL_COLUMN_NAME\").id"
+  _CLEANN=$(echo $_COLUMNS | sed -e 's/\r\n//g')
+  echo "$_CLEANN" | jq -r ".[] | select(.name == \"$_INITIAL_COLUMN_NAME\").id"
   unset _PROJECT_ID _INITIAL_COLUMN_NAME _COLUMNS
 }
 
