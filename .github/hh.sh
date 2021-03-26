@@ -49,15 +49,12 @@ find_project_id() {
            -H 'Accept: application/vnd.github.inertia-preview+json' \
            "$_ENDPOINT")
 
- # _PROJECTS= "$_PROJECTS" | sed -e "s/\n/ /g"
- # _PROJECTS= "$_PROJECTS" | sed -e "s/\r\n/ /g"
-
-  _PROJECTID=  $(echo "$_PROJECTS"  | jq -r ".[] | select(.html_url == \"$_PROJECT_URL\").id")
+  _PROJECTID=$(echo "$_PROJECTS" | jq -r ".[] | select(.html_url == \"$_PROJECT_URL\").id")
 
   if [ "$_PROJECTID" != "" ]; then
     echo "$_PROJECTID"
   else
-    echo "Project not found" >&2
+    echo "No project was found." >&2
     exit 1
   fi
 
@@ -73,7 +70,7 @@ find_column_id() {
           "https://api.github.com/projects/$_PROJECT_ID/columns")
 
 
-  echo "$_COLUMNS" # | jq -r ".[] | select(.name == \"$_INITIAL_COLUMN_NAME\").id"
+  echo "$_COLUMNS" | jq -r ".[] | select(.name == \"$_INITIAL_COLUMN_NAME\").id"
   unset _PROJECT_ID _INITIAL_COLUMN_NAME _COLUMNS
 }
 
@@ -108,9 +105,6 @@ fi
 
 PROJECT_ID=$(find_project_id "$PROJECT_TYPE" "$PROJECT_URL")
 INITIAL_COLUMN_ID=$(find_column_id "$PROJECT_ID" "${INITIAL_COLUMN_NAME:?<Error> required this environment variable}")
-
-echo "HHHHHHHHHHHHHH "
-echo "$INITIAL_COLUMN_ID"
 
 if [ -z "$INITIAL_COLUMN_ID" ]; then
   echo "INITIAL_COLUMN_ID is not found." >&2
