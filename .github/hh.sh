@@ -110,6 +110,8 @@ fi
 
 
 PROJECT_ID=$(find_project_id "$PROJECT_TYPE" "$PROJECT_URL")
+
+echo "$PROJECT_ID is not found." >&2
 INITIAL_COLUMN_ID=$(find_column_id "$PROJECT_ID" "${INITIAL_COLUMN_NAME:?<Error> required this environment variable}")
 
 if [ -z "$INITIAL_COLUMN_ID" ]; then
