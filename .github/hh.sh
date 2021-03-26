@@ -51,7 +51,7 @@ find_project_id() {
            "$_ENDPOINT")
 
 
-  _CLEANED= ${_PROJECTS//[$'\t\r\n']} && CLEANED=${CLEANED%%*( )}
+  _CLEANED= ${_PROJECTS//[$'\t\r\n']} && _CLEANED=${_CLEANED%%*( )}
 
   _PROJECTID=$(echo "$_CLEANED" | jq -r ".[] | select(.html_url == \"$_PROJECT_URL\").id") 
 
