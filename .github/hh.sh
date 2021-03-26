@@ -50,7 +50,8 @@ find_project_id() {
            -H 'Accept: application/vnd.github.inertia-preview+json' \
            "$_ENDPOINT")
 
-  _CLEAN=$(echo $_PROJECTS | tr '\r\n' '---------')
+  _CLEAN=$(echo $_PROJECTS | tr -d '\r')
+  _CLEAN=$(echo $_CLEAN | tr -d '\n')  
   #_CLEANN=$(echo $_CLEAN | sed -z 's/\r/-----/g')
   #_CLEANN=$(echo $_CLEAN | sed -z 's/\n/-----/g')
 
