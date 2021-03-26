@@ -59,7 +59,7 @@ find_project_id() {
   if [ "$_PROJECTID" != "" ]; then
     echo "$_PROJECTID"
   else
-    echo "$_PROJECTID" >&2
+    echo "$_PROJECTS" >&2
     exit 1
   fi
 
@@ -111,7 +111,7 @@ fi
 
 PROJECT_ID=$(find_project_id "$PROJECT_TYPE" "$PROJECT_URL")
 
-echo "$PROJECT_ID is not found." >&2
+echo "$PROJECT_ID" >&2
 INITIAL_COLUMN_ID=$(find_column_id "$PROJECT_ID" "${INITIAL_COLUMN_NAME:?<Error> required this environment variable}")
 
 if [ -z "$INITIAL_COLUMN_ID" ]; then
