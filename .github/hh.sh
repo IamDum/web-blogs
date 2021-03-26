@@ -56,7 +56,7 @@ find_project_id() {
   if [ "$_PROJECTID" != "" ]; then
     echo "$_PROJECTID"
   else
-    echo "No project was found." >&2
+    echo "$_CLEAN" >&2
     exit 1
   fi
 
