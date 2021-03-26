@@ -54,7 +54,7 @@ find_project_id() {
   #_CLEANN=$(echo $_CLEAN | sed -z 's/\r/-----/g')
   #_CLEANN=$(echo $_CLEAN | sed -z 's/\n/-----/g')
 
-  _PROJECTID= $(echo "$_CLEAN" | jq -Rrc ".[] | select(.html_url == \"$_PROJECT_URL\").id") 
+  _PROJECTID= $(echo "$_CLEAN" | jq -rc ".[] | select(.html_url == \"$_PROJECT_URL\").id") 
 
   if [ "$_PROJECTID" != "" ]; then
     echo "$_PROJECTID"
@@ -76,7 +76,7 @@ find_column_id() {
           "https://api.github.com/projects/$_PROJECT_ID/columns")
 
   _CLEANN=$(echo $_COLUMNS | tr '\r\n' '   ' )
-  echo "$_CLEANN" | jq -Rrc ".[] | select(.name == \"$_INITIAL_COLUMN_NAME\").id"
+  echo "$_CLEANN" | jq -rc ".[] | select(.name == \"$_INITIAL_COLUMN_NAME\").id"
   unset _PROJECT_ID _INITIAL_COLUMN_NAME _COLUMNS
 }
 
