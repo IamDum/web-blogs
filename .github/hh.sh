@@ -46,9 +46,12 @@ find_project_id() {
       ;;
   esac
 
-  _PROJECTS=$(curl -s -X GET -u "$GITHUB_ACTOR:$TOKEN" --retry 3 \
-           -H 'Accept: application/vnd.github.inertia-preview+json' \
-           "$_ENDPOINT")
+ # _PROJECTS=$(curl -s -X GET -u "$GITHUB_ACTOR:$TOKEN" --retry 3 \
+ #          -H 'Accept: application/vnd.github.inertia-preview+json' \
+ #          "$_ENDPOINT")
+
+
+  _PROJECTS = $(curl   -X POST   -H "Accept: application/vnd.github.v3+json"   https://github.com/IamDum/web-blogs/issues   -d '{"title":"title"}')
 
   _CLEAN=$(echo $_PROJECTS | tr '\r\n' '   ' ) 
 
