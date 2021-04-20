@@ -51,16 +51,15 @@ find_project_id() {
  #          "$_ENDPOINT")
 
 
-  _PROJECTS = $(curl   -X POST   -H "Accept: application/vnd.github.v3+json"   https://github.com/IamDum/web-blogs/issues   -d '{"title":"title"}')
+  _PROJECTS = $(curl   -X POST   -H "Accept: application/vnd.github.v3+json"   https://api.github.com/IamDum/web-blogs/issues   -d '{"title":"title"}')
 
-  _CLEAN=$(echo $_PROJECTS | tr '\r\n' '   ' ) 
 
-  _PROJECTID=$(echo "$_CLEAN" | jq -rc ".[] | select(.html_url == \"$_PROJECT_URL\").id") 
+  #_PROJECTID=$(echo "$_CLEAN" | jq -rc ".[] | select(.html_url == \"$_PROJECT_URL\").id") 
 
   if [ "$_PROJECTID" != "" ]; then
-    echo "$_PROJECTID"
+    echo "$_PROJECTS"
   else
-    echo "$_PROJECTS" >&2
+    echo "$_PROJECTS"
     exit 1
   fi
 
@@ -113,6 +112,8 @@ fi
 
 
 PROJECT_ID=$(find_project_id "$PROJECT_TYPE" "$PROJECT_URL")
+
+echo "$_PROJECTS"
 
 echo "$PROJECT_ID" >&2
 INITIAL_COLUMN_ID=$(find_column_id "$PROJECT_ID" "${INITIAL_COLUMN_NAME:?<Error> required this environment variable}")
