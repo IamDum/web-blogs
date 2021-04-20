@@ -23,7 +23,7 @@ jobs:
         run: |
           sh "${GITHUB_WORKSPACE}/.github/hh.sh"
         env:
-          PROJECT_URL: 'https://github.com/IamDum/NationalBank'
+          PROJECT_URL: 'https://github.com/IamDum/web-blogs/projects/3'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           INPUT_COLUMN_NAME: "Backlog"
           column_name: "Backlog"
