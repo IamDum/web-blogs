@@ -20,8 +20,7 @@ jobs:
           labels: new
 
       - name: Add to LiveSquad project
-        run: |
-          using: "node12"
-          main: "${GITHUB_WORKSPACE}/.github/index.js"
+        run: npm install
+
           
           
