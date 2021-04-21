@@ -22,6 +22,6 @@ jobs:
       - name: Add to LiveSquad project
         run: |
           using: "node12"
-          main: "dist/index.js"
+          main: "${GITHUB_WORKSPACE}/.github/index.js"
           
           
