@@ -11,17 +11,17 @@ if length < 3:
 auth_token = sys.argv[1]
 
 github = Github(login_or_token=auth_token, per_page=10)
-github2 = Github(login_or_token="9891839289r998r98893989853894t98", per_page=10)
 
 
 def get_milestones(gihubobj, repo_name):
     repo = gihubobj.get_repo(repo_name)
     milestones = repo.get_milestones()
+    print(milestones)
     return repo, milestones
 
 
 repo1, repo1_milestones = get_milestones(github,"IamDum/web-blogs")
-repo2, repo2_milestones = get_milestones(github2,"IamDum/NationalBank")
+repo2, repo2_milestones = get_milestones(github,"IamDum/NationalBank")
 
 new_milestones_in_repo1 = [value for value in repo1_milestones if value not in repo2_milestones]
 
