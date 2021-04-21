@@ -1,9 +1,7 @@
 from __future__ import print_function
 
 import sys
-from collections import defaultdict
 from github import Github
-
 
 length = len(sys.argv)
 
@@ -13,22 +11,18 @@ if length < 3:
 auth_token = sys.argv[1]
 
 github = Github(login_or_token=auth_token, per_page=10)
-repo = github.get_repo("IamDum/web-blogs")
-
-milestones = repo.get_milestones()
-for milestone in milestones:
-    print(milestone)
-    
-
-repo2 = github.get_repo("IamDum/NationalBank")
-
-print(repo2)
-
-milestones = repo2.get_milestones()
-for milestone in milestones:
-    print(milestone)
-
-    
-    
 
 
+def get_milestones(repo_name):
+    repo = github.get_repo(repo_name)
+    milestones = repo.get_milestones()
+    return repo, milestones
+
+
+repo1, repo1_milestones = get_milestones("IamDum/web-blogs")
+repo2, repo2_milestones = get_milestones("IamDum/NationalBank")
+
+new_milestones_in_repo1 = [value for value in repo1_milestones if value not in repo2_milestones]
+
+for new_milestone in new_milestones_in_repo1:
+    repo2.create_milestone(new_milestone.title,state=new_milestone.state,description=new_milestone.description,due_on=new_milestone.due_on )
