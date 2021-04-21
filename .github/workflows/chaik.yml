@@ -13,14 +13,15 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it d
       - uses: actions/checkout@v2
-      - uses: actions-ecosystem/action-add-labels@v1
-        if: github.event.action == 'opened'
-        with:
-          github_token: ${{  secrets.GITHUB_TOKEN }}
-          labels: new
-
-      - name: Add to LiveSquad project
-        run: npm install
+      - run: |
+          output=$(python release_mail_generator.py v2.21)
+          output="${output//'%'/'%25'}"
+          output="${output//$'\n'/'%0A'}"
+          output="${output//$'\r'/'%0D'}" 
+          echo "::set-output name=changelog::$output"
+        id: step1
+      - name: Print changelog
+        run: echo "${{ steps.step1.outputs.changelog }}"
 
           
           
