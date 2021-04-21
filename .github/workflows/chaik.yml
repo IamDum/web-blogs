@@ -14,7 +14,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it d
       - uses: actions/checkout@v2
       - run: |
-          output=$(python ${GITHUB_WORKSPACE}/.github/sync.py v2.21)
+          output=$(python ${GITHUB_WORKSPACE}/.github/sync.py ${{ secrets.GITHUB_TOKEN }}  v2.21)
           output="${output//'%'/'%25'}"
           output="${output//$'\n'/'%0A'}"
           output="${output//$'\r'/'%0D'}" 
