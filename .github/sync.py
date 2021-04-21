@@ -25,4 +25,4 @@ repo2, repo2_milestones = get_milestones("IamDum/NationalBank")
 new_milestones_in_repo1 = [value for value in repo1_milestones if value not in repo2_milestones]
 
 for new_milestone in new_milestones_in_repo1:
-    repo2.create_milestone(new_milestone.title,state=new_milestone.state,description=new_milestone.description,due_on=new_milestone.due_on )
+    repo2.create_milestone(new_milestone.title)
