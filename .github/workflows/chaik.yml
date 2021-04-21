@@ -21,12 +21,7 @@ jobs:
 
       - name: Add to LiveSquad project
         run: |
-          sh "${GITHUB_WORKSPACE}/.github/hh.sh"
-        env:
-          PROJECT_URL: 'https://github.com/IamDum/web-blogs/projects/3'
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          INPUT_COLUMN_NAME: "Backlog"
-          column_name: "Backlog"
-          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          using: "node12"
+          main: "dist/index.js"
           
           
