@@ -25,5 +25,7 @@ repo2, repo2_milestones = get_milestones(github,"IamDum/NationalBank")
 
 new_milestones_in_repo1 = [value for value in repo1_milestones if value not in repo2_milestones]
 
+
+print(new_milestones_in_repo1)
 for new_milestone in new_milestones_in_repo1:
     repo1.create_milestone("title")
