@@ -15,7 +15,8 @@ auth_token = sys.argv[1]
 github = Github(login_or_token=auth_token, per_page=10)
 repo_tmp = github.get_repo("IamDum/web-blogs")
 
-
-print(repo_tmp)
+milestones = repo.get_milestones()
+for milestone in milestones:
+    print(milestone)
 
 
