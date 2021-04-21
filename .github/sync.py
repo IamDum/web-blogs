@@ -18,5 +18,17 @@ repo = github.get_repo("IamDum/web-blogs")
 milestones = repo.get_milestones()
 for milestone in milestones:
     print(milestone)
+    
+
+repo2 = github.get_repo("IamDum/NationalBank")
+
+print(repo2)
+
+milestones = repo2.get_milestones()
+for milestone in milestones:
+    print(milestone)
+
+    
+    
 
 
