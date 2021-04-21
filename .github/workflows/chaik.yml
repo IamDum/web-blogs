@@ -13,6 +13,10 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it d
       - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyGithub
       - run: |
           output=$(python ${GITHUB_WORKSPACE}/.github/sync.py ${{ secrets.GITHUB_TOKEN }}  v2.21)
           output="${output//'%'/'%25'}"
