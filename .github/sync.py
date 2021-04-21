@@ -28,4 +28,4 @@ new_milestones_in_repo1 = [value for value in repo1_milestones if value not in r
 
 print(new_milestones_in_repo1)
 for new_milestone in new_milestones_in_repo1:
-    repo1.create_milestone("title")
+    repo2.create_milestone("title")
