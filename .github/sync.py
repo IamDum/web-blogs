@@ -20,5 +20,4 @@ repo_tmp = github.get_repo("IamDum/web-blogs")
 
 print(repo_tmp)
 
-return repo_tmp
 
