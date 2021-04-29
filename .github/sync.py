@@ -5,11 +5,14 @@ from github import Github
 
 length = len(sys.argv)
 
-print(length)
-print(sys.argv)
-if length !=2:
-    print('This script requires two command line areguments\n1. Github access token\n2. Release milestone')
-    sys.exit(0)
+
+try:
+    if True:
+       vari = 1 / 0
+except Exception as e:
+    print("Error creating milestone: %s" % e)
+    traceback.print_exc()
+
 auth_token = sys.argv[1]
 
 
