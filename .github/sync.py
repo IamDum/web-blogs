@@ -7,7 +7,7 @@ length = len(sys.argv)
 
 if length < 8:
     print('This script requires two command line areguments\n1. Github access token\n2. Release milestone')
-    sys.exit(1)
+    sys.exit(0)
 auth_token = sys.argv[1]
 
 
