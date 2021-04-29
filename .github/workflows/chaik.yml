@@ -18,7 +18,7 @@ jobs:
           python -m pip install --upgrade pip==21.0.1
           pip install pyGithub==1.55
       - run: |
-          output=$(python ${GITHUB_WORKSPACE}/.github/sync.py ${{ secrets.GITHUB_TOKEN }}  v2.21)
+          output=$(python ${GITHUB_WORKSPACE}/.github/sync.py ${{ secrets.GITHUB_TOKEN }}  )
           output="${output//'%'/'%25'}"
           output="${output//$'\n'/'%0A'}"
           output="${output//$'\r'/'%0D'}" 
