@@ -5,10 +5,11 @@ from github import Github
 
 length = len(sys.argv)
 
-if length < 3:
+if length < 8:
     print('This script requires two command line areguments\n1. Github access token\n2. Release milestone')
     sys.exit(1)
 auth_token = sys.argv[1]
+
 
 github = Github(login_or_token=auth_token, per_page=10)
 
