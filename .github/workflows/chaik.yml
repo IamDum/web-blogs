@@ -3,7 +3,7 @@ name: HHH Auto Assign issue to LiveSquad Project
 # Controls when the action will run. 
 on:
   milestone:
-    types: [opened]
+    types: [created]
 
 jobs:
   build:
