@@ -1,9 +1,9 @@
-name: Auto Assign issue to LiveSquad Project
+name: HHH Auto Assign issue to LiveSquad Project
 
 # Controls when the action will run. 
 on:
   milestone:
-    types: [opened, deleted]
+    types: [opened]
 
 jobs:
   build:
